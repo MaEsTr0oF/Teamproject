@@ -1,2 +1,66 @@
-//====================================================================================================
+.header {
 
+	&__top {
+		background-color: $mainHeaderColor;
+		color:#fff;
+	}
+
+	&__body {
+	}
+
+	&__catalog {
+	}
+}
+.top-header {
+
+	&__container {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	&__menu {
+		flex:1 1 auto;
+	}
+
+	&__user {
+		display: inline-flex;
+		align-items: center;
+		font-weight: 600;
+		line-height:math.div(22,18) ;
+		position: relative;
+		
+	}
+	&__user img{
+			margin-right: em(15,28);
+	}
+}
+.menu {
+
+	&__icon {
+	}
+
+	&__body {
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap:wrap;
+		@include adaptiveValue("gap",40,20);
+	}
+
+	&__item {
+	}
+
+	&__link {
+		font-size: rem(19);
+		line-height: math.div(20,16);
+	}
+}
+.burger {
+	display: none;
+}
+.body-header {
+}
+.catalog-header {
+}
