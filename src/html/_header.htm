@@ -18,14 +18,38 @@
 	</div>
 	<div class="header__body body-header">
 		<div class="body-header__container">
-			<a href="#" class="body-header__logo"></a>
-			<div class="body-header__search search-header">
+			<a href="#" class="body-header__logo"><img src="@img/decor/logo.svg" alt=""></a>
+			<div class="body-header__search">
 				<form action="#" class="search-header">
-					<button type="submit" class="search-header__button"></button>
-					<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="" class="search-header__input">
+					<button type="submit" class="search-header__button"><img src="@img/decor/search.svg" alt=""></button>
+					<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Поиск"
+						class="search-header__input">
 				</form>
 			</div>
-			<div class="body-header__actions actions-header"></div>
+			<div class="body-header__actions actions-header">
+				<a href="" class="actions-header__location"><img src="@img/decor/place.svg" alt="">Москва</a>
+				<div class="actions-header__phones phones-header">
+					<div data-spollers class="phones-header__items">
+						<div class="phones-header__item">
+							<a href="" class="phones-header__phone">8-800-555-35-35</a>
+							<button type="button" data-spoller class="phones-header__arrow">
+								<img src="@img/decor/arrow-down.svg" alt=""></button>
+							<ul class="phones-header__list">
+								<li><a href="" class="phones-header__phone">8-800-555-35-36</a></li>
+								<li><a href="" class="phones-header__phone">8-800-555-35-37</a></li>
+								<li><a href="" class="phones-header__phone">8-800-555-35-38</a></li>
+							</ul>
+						</div>
+					</div>
+					<button type="button" class="phones-header__callback">Заказать звонок</button>
+				</div>
+				<div class="actions-header__cart cart-header">
+					<div class="cart-header__icon"><img src="@img/decor/shopping_cart.svg" alt=""><span>0</span></div>
+					<div class="cart-header__summ">0 p.</div>
+					<a href="" class="cart-header__link">Оформить заказ</a>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	<div class="header__catalog catalog-header"></div>
