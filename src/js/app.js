@@ -40,7 +40,6 @@ flsFunctions.menuInit();
 Сниппет (HTML): spollers
 */
 flsFunctions.spollers();
-
 /*
 Модуль работы с табами
 Документация: https://template.fls.guru/template-docs/modul-taby.html

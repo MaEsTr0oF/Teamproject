@@ -132,11 +132,14 @@ padding: 10px 0;
 		
 	}
 	&__search {
-		@include adaptiveValue("padding-left",158,20)
+		flex:1 1 auto;
+		padding-right: rem(20);
+		@include adaptiveValue("padding-left",90,20)
 	}
 }
 //==============================================================================================================
 .search-header {
+	max-width:rem(377);
 	background-color: rgba(7,7,7,0.03);
 	border-radius: rem(3);
 	position:relative;
@@ -153,10 +156,11 @@ padding: 10px 0;
 		top: rem(5.5);
 		left:8px;
 		object-fit: cover;
- 	 	width: rem(30);
-  		height: rem(30);
+		width: rem(30);
+		height: rem(30);
 	}
 	&__input {
+		width:100%;
 		background: transparent;
 		border-radius: rem(3);
 		height: rem(42);
@@ -167,17 +171,24 @@ padding: 10px 0;
 	}
 }
 //==============================================================================================================
-.body-header {
-
-	&__actions {
-	}
-}
 //==============================================================================================================
 .actions-header {
-
+	font-size: rem(15);
+	display: flex;
+	align-items: center;
+	column-gap: rem(30);
 	&__location {
+		display: inline-flex;
+		align-items: center;
+		font-weight: 600;
+		margin:0px rem(25) 0px 0px;
 	}
-
+	&__location img{
+		object-fit: cover;
+		width: rem(30);
+		height: rem(30);
+		margin:0px em(10,24) 0px 0px;
+	}
 	&__phones {
 	}
 
@@ -191,15 +202,45 @@ padding: 10px 0;
 	}
 
 	&__item {
+		
+		position:relative;
+		display: flex;
 	}
 
 	&__phone {
+		font-weight: 600;
+		line-height: math.div(22,18);
+		white-space: nowrap;
 	}
 
 	&__arrow {
+		color:orange;
+		font-size: rem(16);
+		transition: transform 0.3s ease 0s;
+		margin-left: em(17,16);
+		&._spoller-active{
+			transform: 
+			rotate(-180deg)
+			translateX(17px);
+		}
 	}
-
+	&__arrow img{
+		margin-left: rem(-15);
+		object-fit: cover;
+		width: rem(30);
+		height: rem(30);
+	}
 	&__list {
+		position: absolute;
+		top:100%;
+		width:100%;
+		left:0;
+		border-radius: rem(10);
+		background-color: #fff;
+		padding: rem(15);
+		li{
+			&:not(:last-child) {margin-bottom: em(5,18);}
+		}
 	}
 
 	&__callback {
@@ -218,5 +259,5 @@ padding: 10px 0;
 	}
 }
 //==============================================================================================================
-
+//2:14
 
