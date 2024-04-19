@@ -248,11 +248,27 @@ padding: 10px 0;
 }
 //==============================================================================================================
 .cart-header {
-
+	display:flex;
+	column-gap:15px;
 	&__icon {
+		
 	}
-
+	&__icon img{
+		object-fit: cover;
+		width: rem(30);
+		height: rem(30);
+		margin-right:rem(10);
+		span{
+			
+		}
+	}
+	&__body{
+		
+	}
 	&__summ {
+		font-size: rem(16);
+		font-weight: 500;
+		line-height: math.div(20,16);
 	}
 
 	&__link {
