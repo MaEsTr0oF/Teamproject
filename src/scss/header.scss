@@ -32,7 +32,11 @@
 		font-weight: 300;
 		line-height:math.div(22,18) ;
 		position: relative;
-		
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
 	}
 	&__user img{
 			margin-right: em(15,28);
@@ -60,6 +64,11 @@
 	&__link {
 		font-size: rem(15);
 		line-height: math.div(20,16);
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
 	}
 }
 //==============================================================================================================
@@ -177,6 +186,11 @@ padding: 10px 0;
 		align-items: center;
 		font-weight: 600;
 		margin:0px rem(25) 0px 0px;
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
 	}
 	&__location img{
 		object-fit: cover;
@@ -206,11 +220,10 @@ padding: 10px 0;
 		font-weight: 600;
 		line-height: math.div(22,18);
 		white-space: nowrap;
+		margin-top: 7px;
 	}
 
 	&__arrow {
-		color:orange;
-		font-size: rem(16);
 		transition: transform 0.3s ease 0s;
 		margin-left: em(17,16);
 		&._spoller-active{
@@ -240,40 +253,218 @@ padding: 10px 0;
 	}
 
 	&__callback {
-		margin-top: rem(3);
 		color:#B31515;
-		font-weight: 700;
-		line-height: em(8,18);
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+		
 	}
 }
 //==============================================================================================================
 .cart-header {
 	display:flex;
-	column-gap:15px;
-	&__icon {
-		
+	column-gap:5px;
+	&__icon{
+		position: relative;
+	}
+	&__icon span{
+		background-color: #b3151586;
+		font-size:rem(12);
+		position: absolute;
+		width:rem(14);
+		height: rem(14);
+		border-radius: 50%;
+		display: flex;
+		top:0;
+		right:0;
+		justify-content: center;
+		align-items:center ;
+		color:black;
 	}
 	&__icon img{
+		flex:0 0 20px;
 		object-fit: cover;
 		width: rem(30);
 		height: rem(30);
 		margin-right:rem(10);
-		span{
-			
-		}
-	}
-	&__body{
 		
 	}
-	&__summ {
-		font-size: rem(16);
-		font-weight: 500;
+
+	&__body{
 		line-height: math.div(20,16);
+		font-size: rem(16);
+	}
+	&__summ {
+		font-weight: 500;
+		&:not(:last-child) {margin-bottom: em(5,16);}
 	}
 
 	&__link {
+		width: 	50px;
+		color: #B31515;
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+}
+.header {
+
+	&__catalog {
 	}
 }
 //==============================================================================================================
-//2:14
+.catalog-header {
+	position:relative;
+	background-color: $mainHeaderColor;
+	color:#fff;
+	
+	&__container {
+	}
+
+	&__menu {
+	}
+}
+//==============================================================================================================
+.menu-catalog {
+	
+	&__list {
+		display: flex;
+		gap:10px;
+		justify-content: space-between;
+	}
+
+	&__item {
+	}
+
+	&__link {
+		min-height: rem(70);
+		padding: 0px rem(10);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		transition: color 0.3s ease 0s;
+		&::after{
+			content: "";
+			opacity:0;
+			visibility: hidden;
+			position: absolute;
+			bottom:0;
+			left:rem(10);
+			height: 1px;
+			width:90%;
+			background-color: $mainBgColor;
+			transition: all 0.3s ease 0s;
+		}
+		@media (any-hover: hover){
+			&:hover{
+				color: $mainBgColor;
+				&::after{
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+		&._sub-menu-active{
+			color: $mainBgColor;
+				&::after{
+					opacity: 1;
+					visibility: visible;
+				}
+		}
+	}
+
+	&__sub-menu {
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		width: 100%;
+		left:0;
+		top: 100%;
+		background-color: $mainHeaderColor;
+		transition: opacity 0.3s ease 0s;
+		._sub-menu-show &{
+			opacity: 1;
+			pointer-events: auto;
+		}
+	}
+}
+//==============================================================================================================
+.sub-menu-catalog {
+
+	&__block {
+		display: none;
+		padding: 0px rem(10);
+		justify-content: space-between;
+		transition: opacity 0.3s ease 0s;
+		&._sub-menu-open{
+			display: flex;
+		}
+
+	}
+	&__container{
+
+	}
+	&__column {
+		flex:1 1 auto;
+		display: flex;
+		flex-direction: column;
+		gap:30px;
+		
+	}
+
+	&__category {
+		
+		font-size: rem(18);
+		line-height: math.div(20,16);
+		font-weight: 700;
+		padding: rem(25) 0;
+		border-bottom: 1px solid rgba(255,255,255,0.3);
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+	&__list{
+		flex:1 1 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding-bottom: rem(30);
+		border-bottom: 1px solid rgba(255,255,255,0.3);
+	}
+	&__link {
+		font-size: rem(16);
+		line-height: math.div(20 ,16 );
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+	&__item{
+
+	}
+	&__all {
+		font-size: rem(16);
+		color:$mainBgColor;
+		padding-bottom: rem(15);
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+}
+//==============================================================================================================
+
+
+//==============================================================================================================
+//3:32
 
