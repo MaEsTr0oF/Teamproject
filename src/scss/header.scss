@@ -396,17 +396,24 @@ padding: 10px 0;
 
 	&__block {
 		padding-bottom: rem(30);
-		display: none;
+		
 		padding: 0px rem(10);
 		justify-content: start;
-		gap:rem(30);
-		transition: opacity 0.3s ease 0s;
-		&._sub-menu-open{
-			display: flex;
+		display: none;
+		gap:rem(50);
+		@for $var from 1 to 6{
+			&_#{$var}{
+				//justify-items: start;
+				grid-template-columns: repeat($var,auto);
 		}
-
+		&._sub-menu-open{
+			display:grid;
+			
+		}
+		}
 	}
 	&__container{
+		padding:0px rem(10);
 
 	}
 
