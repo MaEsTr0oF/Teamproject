@@ -380,17 +380,14 @@ padding: 10px 0;
 	}
 
 	&__sub-menu {
-		opacity: 0;
-		pointer-events: none;
-		position: absolute;
+
 		width: 100%;
 		left:0;
 		top: 100%;
 		background-color: $mainHeaderColor;
-		transition: opacity 0.3s ease 0s;
+
 		._sub-menu-show &{
-			opacity: 1;
-			pointer-events: auto;
+
 		}
 	}
 }
@@ -398,9 +395,11 @@ padding: 10px 0;
 .sub-menu-catalog {
 
 	&__block {
+		padding-bottom: rem(30);
 		display: none;
 		padding: 0px rem(10);
-		justify-content: space-between;
+		justify-content: start;
+		gap:rem(30);
 		transition: opacity 0.3s ease 0s;
 		&._sub-menu-open{
 			display: flex;
@@ -410,13 +409,7 @@ padding: 10px 0;
 	&__container{
 
 	}
-	&__column {
-		flex:1 1 auto;
-		display: flex;
-		flex-direction: column;
-		gap:30px;
-		
-	}
+
 
 	&__category {
 		
@@ -437,6 +430,7 @@ padding: 10px 0;
 		flex-direction: column;
 		gap: 20px;
 		padding-bottom: rem(30);
+		padding-right:rem(10);
 		border-bottom: 1px solid rgba(255,255,255,0.3);
 	}
 	&__link {
