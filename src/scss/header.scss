@@ -42,15 +42,7 @@
 			margin-right: em(15,28);
 	}
 }
-//==============================================================================================================
-.menu {
-
-	&__icon {
-	}
-
-	&__body {
-	}
-
+.menu-top-header{
 	&__list {
 		display: flex;
 		flex-wrap:wrap;
@@ -69,6 +61,11 @@
 				text-decoration: underline;
 			}
 		}
+	}
+}
+//==============================================================================================================
+.menu {
+	&__body {
 	}
 }
 //==============================================================================================================
@@ -138,7 +135,7 @@ padding: 10px 0;
 	&__search {
 		flex:1 1 auto;
 		padding-right: rem(20);
-		@include adaptiveValue("padding-left",90,20)
+		@include adaptiveValue("padding-left",90,20,1500,1000,1);
 	}
 }
 //==============================================================================================================
@@ -181,11 +178,13 @@ padding: 10px 0;
 	display: flex;
 	align-items: center;
 	column-gap: rem(30);
+	@include adaptiveValue("column-gap",30 ,0,1500,1000,1);
 	&__location {
 		display: inline-flex;
 		align-items: center;
 		font-weight: 600;
 		margin:0px rem(25) 0px 0px;
+		
 		@media (any-hover: hover){
 			&:hover{
 				text-decoration: underline;
