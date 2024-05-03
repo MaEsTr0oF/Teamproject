@@ -278,8 +278,8 @@ background-color:$mainBgColor;
 	}
 	&__location img{
 		object-fit: cover;
-		width :rem(30);
-		height :rem(30);
+		width :rem(40);
+		height :rem(40);
 		margin:0px em(10,24) 0px 0px;
 	}
 	&__phones {
@@ -347,7 +347,7 @@ background-color:$mainBgColor;
 		left:0;
 		z-index :2;
 		border-radius: rem(10);
-		background-color: #fff;
+		background-color: $mainHeaderColor;
 		padding: rem(15);
 		box-shadow :0 0 5px black;
 		li{
@@ -377,7 +377,7 @@ background-color:$mainBgColor;
 		position :relative;
 	}
 	&__icon span{
-		background-color :#b3151586;
+		background-color :rgba(255, 255, 0, 0.601);
 		font-size:rem(12);
 		position: absolute;
 		width:rem(14);
@@ -393,8 +393,8 @@ background-color:$mainBgColor;
 	&__icon img{
 		flex:0 0 20px;
 		object-fit: cover;
-		width: rem(30);
-		height :rem(30);
+		width: rem(40);
+		height :rem(40);
 		margin-right:rem(10);
 		
 	}
