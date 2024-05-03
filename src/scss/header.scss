@@ -1,14 +1,11 @@
 //===================================================================================================================================================================================================
 .header {
-
 	&__top {
 		background-color: $mainHeaderColor;
 		color:#fff;
 	}
-
 	&__body {
 	}
-
 	&__catalog {
 	}
 }
@@ -19,11 +16,14 @@
 		display: flex;
 		align-items: center;
 		gap: 20px;
+		@include adaptiveValue("gap",20 ,0 );
 		min-height: 40px;
+		position: relative;
 	}
 
 	&__menu {
 		flex:1 1 auto;
+		
 	}
 
 	&__user {
@@ -53,7 +53,7 @@
 	&__list {
 		display: flex;
 		flex-direction: column;
-		row-gap: rem(5);
+		row-gap: rem(20);
 		@include adaptiveValue("column-gap",50,20);
 		@media (min-width: $tablet){
 			flex-direction: row;
@@ -79,16 +79,20 @@
 				text-decoration: underline;
 			}
 		}
-	}
-	&_catalog{
-		display: flex;
-		&::before{
-			flex:0 0 14px;
-			height: 14px;
-			font-size:rem(10);
-			
+		&_catalog{
+			display: flex;
+			&::before{
+				flex:0 0 14px;
+				height: 14px;
+				font-size:rem(10);
+				
+			}
 		}
-	}	
+		@media (max-width:$tablet){
+		@include adaptiveValue("font-size",30 ,18,992,320,1 );
+		}
+	}
+		
 	&__link_catalog img{
 		object-fit: cover;
 		width: 35px;
@@ -98,13 +102,16 @@
 		translateY(-10px)
 		translateX(2px);
 	}
+	
 	@media (min-width:$tablet){
 		 display: block; 
 	}
 }
 //===================================================================================================================================================================================================
 .menu {
-	position: relative;
+	position: absolute;
+	top:30%;
+	right:10px;
 	&__body {
 		@media (max-width:$tablet){
 			  position: fixed;
@@ -115,11 +122,12 @@
 			  overflow:auto;
 			  background-color: $mainHeaderColor;
 			  padding: rem(50)rem(15);
-			  z-index: 4;
+			  z-index: 1;
+			  transition: left 0.3s ease 0s;
+			  .menu-open &{
+					left:0;
+			  }
 		}
-	}
-	&__icon{
-		z-index: 5;
 	}
 	@media(max-width:$tablet){
 		flex: 1 1 auto;
@@ -131,15 +139,13 @@
 .burger {
 	display: none;
 	@media(max-width:$tablet){
-		display: block;
 		position: relative;
-		top:0;
-		left:0;
+		display: block;
 		width: 30px;
-		height: 13px;
+		height: 30px;
 		margin-left: 10px;
 		cursor: pointer;
-		z-index: 6;
+		z-index: 2;
 		span,
 		&before,
 		&after{
@@ -161,6 +167,7 @@
 			top:calc(50% - 1px);
 		}
 		.menu-open &{
+			background-image: url("@img/decor/burger.svg");
 			span{
 				transform:scale(0);
 			}
@@ -242,6 +249,9 @@ background-color:$mainBgColor;
 			color:rgba($color: #000000, $alpha: 0.3)
 		}
 	}
+	@media (max-width:$mobileSmall){
+		 background-color: #fff; 
+	}
 }
 //===================================================================================================================================================================================================
 .actions-header {
@@ -254,8 +264,7 @@ background-color:$mainBgColor;
 		display :inline-flex;
 		align-items: center;
 		font-weight: 600;
-		margin:0px rem(25) 0px 0px;
-		
+		@include adaptiveValue("margin-right",25px ,0 );
 		@media (any-hover: hover){
 			&hover{
 				text-decoration: underline;
@@ -295,8 +304,24 @@ background-color:$mainBgColor;
 		line-height: math.div(22,18);
 		white-space :nowrap;
 		margin-top :7px;
+		& img{
+			display: none;
+			object-fit: cover;
+			height: 30px;
+			width: 30px;
+			@media (max-width:$mobileSmall){
+				display: block;
+		 }
+		}
+		& span{
+			display: inline-block;
+			
+			@media (max-width:$mobileSmall){
+				display: none;
+			}
+		}
 	}
-
+	
 	&__arrow {
 		transition :transform 0.3s ease 0s;
 		margin-left: em(17,16);
@@ -417,6 +442,9 @@ background-color:$mainBgColor;
 
 	&__menu {
 	}
+	@media (max-width:$mobileSmall){
+		 padding: rem(20) 0; 
+	}
 }
 //===================================================================================================================================================================================================
 .menu-catalog {
@@ -475,10 +503,15 @@ background-color:$mainBgColor;
 		left:0;
 		top: 100%;
 		background-color: $mainHeaderColor;
+	}
+	@media (max-width:$tablet){
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
 
-		._sub-menu-show &{
-
-		}
 	}
 }
 //===================================================================================================================================================================================================
@@ -553,4 +586,4 @@ background-color:$mainBgColor;
 		}
 	}
 }
-//5:28
+//5:38
