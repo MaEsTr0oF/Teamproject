@@ -402,7 +402,7 @@ background-color:$mainBgColor;
 	&__body{
 		line-height: math.div(20,16);
 		font-size: rem(16);
-		@media(max-widthem(1050)){
+		@media(max-width:em(1050)){
 			display: none;
 		}
 	}
