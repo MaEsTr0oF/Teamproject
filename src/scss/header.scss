@@ -485,7 +485,7 @@ background-color:$mainBgColor;
 		@media (max-width:$tablet){
 			flex-direction: column;
 			row-gap: rem(25);
-			margin-top: 50px;
+			
 		}
 	}
 
@@ -532,18 +532,25 @@ background-color:$mainBgColor;
 					visibility: visible;
 				}
 		}
-		&__back{
-			display: none;
-			@media (max-width:$tablet){
-				display:inline-flex;
-				align-items: center;
-			}
-		}
+		
 		@media (max-width:$tablet){
 			@include adaptiveValue("font-size",30 ,18,992,320,1 );
 		}
 	}
-
+	&__back{
+		display: none;
+		@media (max-width:$tablet){
+			display:inline-flex;
+			align-items: center;
+			
+		}
+		img{
+			margin-right: rem(10);
+			object-fit: cover;
+			width: rem(20);
+			height: rem(20);
+		}
+	}
 	&__sub-menu {
 
 		width: 100%;
