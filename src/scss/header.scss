@@ -27,6 +27,8 @@
 	}
 
 	&__user {
+		position: relative;
+		z-index:5;
 		display: inline-flex;
 		align-items: center;
 		font-weight: 300;
@@ -54,6 +56,7 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: rem(20);
+		margin-top:rem(30);
 		@include adaptiveValue("column-gap",50,20);
 		@media (min-width: $tablet){
 			flex-direction: row;
@@ -81,10 +84,17 @@
 		}
 		&_catalog{
 			display: flex;
+			align-items: center;
+			flex-direction: row;
+			justify-content: space-between;
 			&::before{
 				flex:0 0 14px;
 				height: 14px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				font-size:rem(10);
+				transform: translateY(rem(-2)) rotate(-90deg);
 				
 			}
 		}
@@ -122,10 +132,23 @@
 			  overflow:auto;
 			  background-color: $mainHeaderColor;
 			  padding: rem(50)rem(15);
-			  z-index: 1;
 			  transition: left 0.3s ease 0s;
+			  z-index: 1;
+			  &::before{
+				content: "";
+				position: fixed;
+				width: 100%;
+				height: 70px;
+				left: -100%;
+				top:0;
+				background-color: $mainHeaderColor;
+			  }
+			  
 			  .menu-open &{
 					left:0;
+					&::before{
+						left:0;
+					}
 			  }
 		}
 	}
@@ -167,6 +190,7 @@
 			top:calc(50% - 1px);
 		}
 		.menu-open &{
+			z-index: 10;
 			background-image: url("@img/decor/burger.svg");
 			span{
 				transform:scale(0);
@@ -261,6 +285,8 @@ background-color:$mainBgColor;
 	column-gap: rem(30);
 	@include adaptiveValue("column-gap",30 ,15,1500,1000,1);
 	&__location {
+		position: relative;
+		z-index:5;
 		display :inline-flex;
 		align-items: center;
 		font-weight: 600;
@@ -289,7 +315,8 @@ background-color:$mainBgColor;
 }
 //===================================================================================================================================================================================================
 .phones-header {
-
+	position: relative;
+	z-index:5;
 	&__items {
 	}
 
@@ -373,6 +400,8 @@ background-color:$mainBgColor;
 .cart-header {
 	display:flex;
 	column-gap:5px;
+	position: relative;
+	z-index:5;
 	&__icon{
 		position :relative;
 	}
@@ -451,23 +480,31 @@ background-color:$mainBgColor;
 	
 	&__list {
 		display :flex;
-		gap:10px;
+		column-gap:10px;
 		justify-content: space-between;
+		@media (max-width:$tablet){
+			flex-direction: column;
+			row-gap: rem(25);
+			margin-top: 50px;
+		}
 	}
 
 	&__item {
 	}
 
-	&__link {
-		min-height :rem(70);
-		padding :0px rem(10);
+	&__link { 
 		display: flex;
-		justify-content :center;
-		align-items: center;
-		text-align: center;
 		position: relative;
 		transition :color 0.3s ease 0s;
-		&after{
+		@media (min-width:$tablet){
+			justify-content :center;
+			align-items: center;
+			text-align: center;
+			min-height :rem(70);
+			padding :0px rem(10);
+			
+		}
+		&::after{
 			content :"";
 			opacity:0;
 			visibility: hidden;
@@ -495,6 +532,16 @@ background-color:$mainBgColor;
 					visibility: visible;
 				}
 		}
+		&__back {
+			display: none;
+			@media (max-width:$tablet){
+				display:inline-flex;
+				align-items: center;
+			}
+		}
+		@media (max-width:$tablet){
+			@include adaptiveValue("font-size",30 ,18,992,320,1 );
+		}
 	}
 
 	&__sub-menu {
@@ -511,7 +558,13 @@ background-color:$mainBgColor;
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-
+		background-color: $mainHeaderColor;
+		padding: rem(50)rem(15);
+		transition: left 0.3s ease 0s;
+		.catalog-open &{
+			left:0;
+			z-index:6;
+		}
 	}
 }
 //===================================================================================================================================================================================================
