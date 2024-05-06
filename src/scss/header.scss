@@ -532,7 +532,7 @@ background-color:$mainBgColor;
 					visibility: visible;
 				}
 		}
-		&__back {
+		&__back{
 			display: none;
 			@media (max-width:$tablet){
 				display:inline-flex;
@@ -639,4 +639,4 @@ background-color:$mainBgColor;
 		}
 	}
 }
-//5:38
+//5:55
