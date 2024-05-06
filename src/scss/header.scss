@@ -542,10 +542,13 @@ background-color:$mainBgColor;
 		@media (max-width:$tablet){
 			display:inline-flex;
 			align-items: center;
-			
+			@include adaptiveValue("font-size",30 ,18,992,320,1 );
+			&:not(:last-child) {margin-bottom: em(65,30);}
+			&::before{
+			}
 		}
 		img{
-			margin-right: rem(10);
+			margin-right: em(13,30);
 			object-fit: cover;
 			width: rem(20);
 			height: rem(20);
@@ -576,7 +579,22 @@ background-color:$mainBgColor;
 }
 //===================================================================================================================================================================================================
 .sub-menu-catalog {
-
+	@media (max-width:$tablet){
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow:hidden;
+		background-color: $mainHeaderColor;
+		padding: rem(25) rem(15) rem(50) rem(15);
+		transition: left 0.3s ease 0s;
+		.sub-menu-open &{
+			display: block;
+			left:0;
+			z-index: 6;
+		}
+	}
 	&__block {
 		padding-bottom: rem(30);
 		
@@ -585,22 +603,23 @@ background-color:$mainBgColor;
 		display: none;
 		gap:rem(50);
 		@for $var from 1 to 6{
-			&_#{$var}{
-				justify-items: start;
-				grid-template-columns: repeat($var,auto);
+				&_#{$var}{
+					justify-items: start;
+					grid-template-columns: repeat($var,auto);
+			}
 		}
 		&._sub-menu-open{
 			display:grid;
+			@media (max-width:$tablet){
+				display: block;
+			}
 			
-		}
 		}
 	}
 	&__container{
 		padding:0px rem(10);
 
 	}
-
-
 	&__category {
 		
 		font-size :rem(18);
@@ -645,5 +664,22 @@ background-color:$mainBgColor;
 			}
 		}
 	}
+	&__back{
+		display: none;
+		@media (max-width:$tablet){
+			display:inline-flex;
+			align-items: center;
+			@include adaptiveValue("font-size",30 ,18,992,320,1 );
+			&:not(:last-child) {margin-bottom: em(65,30);}
+			&::before{
+			}
+		}
+		img{
+			margin-right: em(13,30);
+			object-fit: cover;
+			width: rem(20);
+			height: rem(20);
+		}
+	}
 }
-//5:55
+//6:17

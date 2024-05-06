@@ -418,8 +418,11 @@ export function menuInit() {
 			if (bodyLockStatus && e.target.closest('.burger')) {
 				bodyLockToggle();
 				document.documentElement.classList.toggle("menu-open");
-				if(document.documentElement.classList.contains("catalog-open")){
+				if (document.documentElement.classList.contains("catalog-open")) {
 					document.documentElement.classList.remove("catalog-open");
+				}
+				if (document.documentElement.classList.contains('sub-menu-open')) {
+					document.documentElement.classList.remove('sub-menu-open');
 				}
 			}
 		});
