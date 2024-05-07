@@ -1,41 +1,48 @@
 //===================================================================================================================================================================================================
 .header {
-
 	&__top {
 		background-color: $mainHeaderColor;
 		color:#fff;
 	}
-
 	&__body {
 	}
-
 	&__catalog {
 	}
 }
 //===================================================================================================================================================================================================
 .top-header {
-	padding: 0 10px;
+	padding : 10px;
 	&__container {
 		display: flex;
 		align-items: center;
 		gap: 20px;
+		@include adaptiveValue("gap",20 ,0 );
 		min-height: 40px;
+		position: relative;
 	}
 
 	&__menu {
 		flex:1 1 auto;
+		
 	}
 
 	&__user {
+		position: relative;
+		z-index:5;
 		display: inline-flex;
 		align-items: center;
 		font-weight: 300;
 		line-height:math.div(22,18) ;
 		position: relative;
 		@media (any-hover: hover){
-			&:hover{
+			&hover{
 				text-decoration: underline;
 			}
+		}
+		@media (max-width:$mobile){
+			  span{
+				display:none;
+			  }
 		}
 	}
 	&__user img{
@@ -44,86 +51,155 @@
 }
 //===================================================================================================================================================================================================
 .menu-top-header{
+	display: none; 
 	&__list {
 		display: flex;
-		flex-wrap:wrap;
+		flex-direction: column;
+		row-gap: rem(20);
+		margin-top:rem(30);
 		@include adaptiveValue("column-gap",50,20);
-		row-gap: rem(5);
+		@media (min-width: $tablet){
+			flex-direction: row;
+			row-gap: rem(10);
+		}
+		
 	}
 
 	&__item {
+		&_catalog{
+			@media (min-width:$tablet){
+				display: none;
+			}
+		}
 	}
 
 	&__link {
 		font-size: rem(15);
+		@include adaptiveValue("font-size",20,16,992,320,1 );
 		line-height: math.div(20,16);
 		@media (any-hover: hover){
-			&:hover{
+			&hover{
 				text-decoration: underline;
 			}
 		}
+		&_catalog{
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			justify-content: space-between;
+			&::before{
+				flex:0 0 14px;
+				height: 14px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size:rem(10);
+				transform: translateY(rem(-2)) rotate(-90deg);
+				
+			}
+		}
+		@media (max-width:$tablet){
+		@include adaptiveValue("font-size",30 ,18,992,320,1 );
+		}
+	}
+		
+	&__link_catalog img{
+		object-fit: cover;
+		width: 35px;
+		height: 35px;
+		transform: 
+		rotate(-90deg)
+		translateY(-10px)
+		translateX(2px);
+	}
+	
+	@media (min-width:$tablet){
+		 display: block; 
 	}
 }
 //===================================================================================================================================================================================================
 .menu {
+	position: absolute;
+	top:30%;
+	right:10px;
 	&__body {
-		@media (max-width:$mobile){
+		@media (max-width:$tablet){
 			  position: fixed;
 			  width: 100%;
 			  height: 100%;
 			  top: 0;
-			  left: 0;
+			  left: -100%;
 			  overflow:auto;
 			  background-color: $mainHeaderColor;
 			  padding: rem(50)rem(15);
-			  z-index: 4;
+			  transition: left 0.3s ease 0s;
+			  z-index: 1;
+			  &::before{
+				content: "";
+				position: fixed;
+				width: 100%;
+				height: 70px;
+				left: -100%;
+				top:0;
+				background-color: $mainHeaderColor;
+			  }
+			  
+			  .menu-open &{
+					left:0;
+					&::before{
+						left:0;
+					}
+			  }
 		}
 	}
 	@media(max-width:$tablet){
-		display: block;
-		flex:0 0 30px;
+		flex: 1 1 auto;
+		display:block;
+		justify-content: space-between;
 	}
 }
 //===================================================================================================================================================================================================
 .burger {
 	display: none;
 	@media(max-width:$tablet){
-		display: block;
 		position: relative;
+		display: block;
 		width: 30px;
-		height: 13px;
+		height: 30px;
 		margin-left: 10px;
 		cursor: pointer;
-		z-index: 5;
+		z-index: 2;
 		span,
-		&::before,
-		&::after{
-			content: "";
+		&before,
+		&after{
+			content:"" ;
 			transition: all 0.3s easw 0s;
 			left: 0;
 			position: absolute;
 			width: 100%;
-			height: 2px;
+			height :2px;
 			background-color: #fff;
 		}
-		&::before{
+		&before{
 			top:0px;
 		}
-		&::after{
+		&after{
 			bottom:0px;
 		}
 		span{
 			top:calc(50% - 1px);
 		}
 		.menu-open &{
+			z-index: 10;
+			background-image: url("@img/decor/burger.svg");
 			span{
-				transform: scale(0);
+				transform:scale(0);
 			}
-			&::before{
+			&before{
 				transform: rotate(-45deg);
 				transform: calc(50% - 1px);
 			}
-			&::after{
+			&after{
 				transform: rotate(45deg);
 				bottom:calc(50% - 1px);
 			}
@@ -132,18 +208,26 @@
 }
 //===================================================================================================================================================================================================
 .body-header {
-padding: 10px 0;
-	background-color:$mainBgColor ;
+padding :10px 0;
+
+background-color:$mainBgColor;
 	&__container {
 		display: flex;
+		width: 500px;
+		gap:30px;
 		min-height: rem(70);
 		align-items: center;
+		@media (min-width:$tablet){
+			  justify-content: space-between;
+			  width: auto;
+			  gap:0;
+		}
 	}
 
 	&__logo img{
-		object-fit: cover;
- 	 	width: rem(80);
-  		height: rem(80);
+		object-fit :cover;
+ 	 	width :rem(80);
+  		height :rem(80);
 	}
 	&__logo {
 		
@@ -152,6 +236,9 @@ padding: 10px 0;
 		flex:1 1 auto;
 		padding-right: rem(20);
 		@include adaptiveValue("padding-left",90,20,1500,1000,1);
+		@media (min-width:$tablet){
+			flex:1 1 auto;
+		}
 	}
 }
 //===================================================================================================================================================================================================
@@ -168,48 +255,57 @@ padding: 10px 0;
 		align-items: center;
 	}
 	&__button img{
-		padding: rem(5);
+		padding:rem(5);
 		position:absolute;
 		top: rem(5.5);
 		left:8px;
-		object-fit: cover;
+		object-fit :cover;
 		width: rem(30);
 		height: rem(30);
 	}
 	&__input {
 		width:100%;
-		background: transparent;
-		border-radius: rem(3);
+		background :transparent;
+		border-radius :rem(3);
 		height: rem(42);
-		padding: 0px rem(20) 0px rem(50);
-		&::placeholder{
+		padding :0px rem(20) 0px rem(50);
+		&placeholder{
 			color:rgba($color: #000000, $alpha: 0.3)
 		}
+	}
+	@media (max-width:$mobileSmall){
+		 background-color: #fff; 
 	}
 }
 //===================================================================================================================================================================================================
 .actions-header {
 	font-size: rem(15);
-	display: flex;
-	align-items: center;
+	display :flex;
+	align-items :center;
 	column-gap: rem(30);
 	@include adaptiveValue("column-gap",30 ,15,1500,1000,1);
 	&__location {
-		display: inline-flex;
+		position: relative;
+		z-index:5;
+		display :inline-flex;
 		align-items: center;
 		font-weight: 600;
-		margin:0px rem(25) 0px 0px;
-		
+		@include adaptiveValue("margin-right",25px ,0 );
 		@media (any-hover: hover){
-			&:hover{
+			&hover{
 				text-decoration: underline;
 			}
 		}
+		@media (max-width:$mobile){
+			span{
+			 display:none;
+			}
+	 }
 	}
 	&__location img{
 		object-fit: cover;
-		width: rem(30);
-		height: rem(30);
+		width :rem(40);
+		height :rem(40);
 		margin:0px em(10,24) 0px 0px;
 	}
 	&__phones {
@@ -219,7 +315,8 @@ padding: 10px 0;
 }
 //===================================================================================================================================================================================================
 .phones-header {
-
+	position: relative;
+	z-index:5;
 	&__items {
 	}
 
@@ -232,12 +329,28 @@ padding: 10px 0;
 	&__phone {
 		font-weight: 600;
 		line-height: math.div(22,18);
-		white-space: nowrap;
-		margin-top: 7px;
+		white-space :nowrap;
+		margin-top :7px;
+		& img{
+			display: none;
+			object-fit: cover;
+			height: 30px;
+			width: 30px;
+			@media (max-width:$mobileSmall){
+				display: block;
+		 }
+		}
+		& span{
+			display: inline-block;
+			
+			@media (max-width:$mobileSmall){
+				display: none;
+			}
+		}
 	}
-
+	
 	&__arrow {
-		transition: transform 0.3s ease 0s;
+		transition :transform 0.3s ease 0s;
 		margin-left: em(17,16);
 		&._spoller-active{
 			transform: 
@@ -246,49 +359,58 @@ padding: 10px 0;
 		}
 	}
 	&__arrow img{
-		margin-left: rem(-15);
-		object-fit: cover;
+		margin-left :rem(-15);
+		object-fit :cover;
 		width: rem(30);
 		height: rem(30);
+		@media (max-width:$tablet){
+			display: none;
+		}
 	}
 	&__list {
 		position: absolute;
 		top:100%;
 		width:100%;
 		left:0;
-		z-index: 2;
+		z-index :2;
 		border-radius: rem(10);
-		background-color: #fff;
+		background-color: $mainHeaderColor;
 		padding: rem(15);
-		box-shadow: 0 0 5px black;
+		box-shadow :0 0 5px black;
 		li{
 			&:not(:last-child) {margin-bottom: em(5,18);}
 		}
 	}
 
 	&__callback {
-		color:#B31515;
+		color:rgba(255, 255, 0, 0.548);
+		display: none;
 		@media (any-hover: hover){
-			&:hover{
+			&hover{
 				text-decoration: underline;
 			}
 		}
-		
+		@media (min-width:$tablet){
+			color:#B31515;
+			display: block;
+		}
 	}
 }
 //===================================================================================================================================================================================================
 .cart-header {
 	display:flex;
 	column-gap:5px;
+	position: relative;
+	z-index:5;
 	&__icon{
-		position: relative;
+		position :relative;
 	}
 	&__icon span{
-		background-color: #b3151586;
+		background-color :rgba(255, 255, 0, 0.601);
 		font-size:rem(12);
 		position: absolute;
 		width:rem(14);
-		height: rem(14);
+		height :rem(14);
 		border-radius: 50%;
 		display: flex;
 		top:0;
@@ -300,8 +422,8 @@ padding: 10px 0;
 	&__icon img{
 		flex:0 0 20px;
 		object-fit: cover;
-		width: rem(30);
-		height: rem(30);
+		width: rem(40);
+		height :rem(40);
 		margin-right:rem(10);
 		
 	}
@@ -319,12 +441,16 @@ padding: 10px 0;
 	}
 
 	&__link {
-		width: 	50px;
-		color: #B31515;
-		@media (any-hover: hover){
-			&:hover{
+		display: none;
+		width :	50px;
+		color :#B31515;
+		@media (any-hover :hover){
+			&hover{
 				text-decoration: underline;
 			}
+		}
+		@media (min-width:1150px){
+			display: block;
 		}
 	}
 }
@@ -345,30 +471,41 @@ padding: 10px 0;
 
 	&__menu {
 	}
+	@media (max-width:$mobileSmall){
+		 padding: rem(20) 0; 
+	}
 }
 //===================================================================================================================================================================================================
 .menu-catalog {
 	
 	&__list {
-		display: flex;
-		gap:10px;
+		display :flex;
+		column-gap:10px;
 		justify-content: space-between;
+		@media (max-width:$tablet){
+			flex-direction: column;
+			row-gap: rem(25);
+			
+		}
 	}
 
 	&__item {
 	}
 
-	&__link {
-		min-height: rem(70);
-		padding: 0px rem(10);
+	&__link { 
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
 		position: relative;
-		transition: color 0.3s ease 0s;
+		transition :color 0.3s ease 0s;
+		@media (min-width:$tablet){
+			justify-content :center;
+			align-items: center;
+			text-align: center;
+			min-height :rem(70);
+			padding :0px rem(10);
+			
+		}
 		&::after{
-			content: "";
+			content :"";
 			opacity:0;
 			visibility: hidden;
 			position: absolute;
@@ -376,76 +513,138 @@ padding: 10px 0;
 			left:rem(10);
 			height: 1px;
 			width:90%;
-			background-color: $mainBgColor;
-			transition: all 0.3s ease 0s;
+			background-color :$mainBgColor;
+			transition :all 0.3s ease 0s;
 		}
 		@media (any-hover: hover){
-			&:hover{
+			&hover{
 				color: $mainBgColor;
-				&::after{
+				&after{
 					opacity: 1;
-					visibility: visible;
+					visibility :visible;
 				}
 			}
 		}
 		&._sub-menu-active{
 			color: $mainBgColor;
-				&::after{
-					opacity: 1;
+				&after{
+					opacity:1;
 					visibility: visible;
 				}
 		}
+		
+		@media (max-width:$tablet){
+			@include adaptiveValue("font-size",30 ,18,992,320,1 );
+			
+		}
 	}
-
+	&__back{
+		display: none;
+		@media (max-width:$tablet){
+			display:inline-flex;
+			align-items: center;
+			@include adaptiveValue("font-size",30 ,18,992,320,1 );
+			&:not(:last-child) {margin-bottom: em(65,30);}
+			&::before{
+			}
+		}
+		img{
+			margin-right: em(13,30);
+			object-fit: cover;
+			width: rem(20);
+			height: rem(20);
+		}
+	}
 	&__sub-menu {
 
 		width: 100%;
 		left:0;
 		top: 100%;
 		background-color: $mainHeaderColor;
-
-		._sub-menu-show &{
-
+	}
+	@media (max-width:$tablet){
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: $mainHeaderColor;
+		padding: rem(50)rem(15);
+		transition: left 0.3s ease 0s;
+		.catalog-open &{
+			left:0;
+			z-index:6;
 		}
 	}
 }
 //===================================================================================================================================================================================================
 .sub-menu-catalog {
-
+	height: 100%;
+	@media (max-width:$tablet){
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow:hidden;
+		background-color: $mainHeaderColor;
+		padding: rem(25) rem(15) rem(50) rem(15);
+		transition: left 0.3s ease 0s;
+		.sub-menu-open &{
+			display: block;
+			left:0;
+			z-index: 6;
+		}
+	}
 	&__block {
 		padding-bottom: rem(30);
 		
-		padding: 0px rem(10);
+		padding :0px rem(10);
 		justify-content: start;
 		display: none;
 		gap:rem(50);
 		@for $var from 1 to 6{
-			&_#{$var}{
-				//justify-items: start;
-				grid-template-columns: repeat($var,auto);
+				&_#{$var}{
+					justify-items: start;
+					grid-template-columns: repeat($var,auto);
+			}
 		}
 		&._sub-menu-open{
 			display:grid;
+			@media (max-width:$tablet){
+				display: inline-flex;
+				flex-direction: column;
+				gap:rem(10);
+				
+			}
 			
-		}
 		}
 	}
 	&__container{
 		padding:0px rem(10);
 
 	}
-
-
 	&__category {
 		
-		font-size: rem(18);
-		line-height: math.div(20,16);
-		font-weight: 700;
-		padding: rem(25) 0;
+		font-size :rem(18);
+		line-height :math.div(20,16);
+		
+		
 		border-bottom: 1px solid rgba(255,255,255,0.3);
-		@media (any-hover: hover){
-			&:hover{
+		@media (any-hover:hover){
+			&hover{
 				text-decoration: underline;
+			}
+		}
+		@media (max-width:$tablet){
+			font-weight: 700;
+			padding: rem(25) 0;
+			@include adaptiveValue("font-size",25 ,15,992,320,1);
+		}
+		@media (max-width:$tablet){
+			&:not(:last-child) {
+				margin-bottom: em(25,16);
 			}
 		}
 	}
@@ -457,36 +656,51 @@ padding: 10px 0;
 		padding-bottom: rem(30);
 		padding-right:rem(10);
 		border-bottom: 1px solid rgba(255,255,255,0.3);
+		@media (max-width:$tablet){
+			display: none;
+		}
 	}
 	&__link {
 		font-size: rem(16);
 		line-height: math.div(20 ,16 );
 		@media (any-hover: hover){
-			&:hover{
+			&hover{
 				text-decoration: underline;
 			}
 		}
 	}
 	&__item{
-
+		
 	}
 	&__all {
 		font-size: rem(16);
 		color:$mainBgColor;
 		padding-bottom: rem(15);
-		@media (any-hover: hover){
-			&:hover{
+		@media (any-hover :hover){
+			&hover{
 				text-decoration: underline;
 			}
 		}
+		@media (max-width:$tablet){
+			display:none;
+		}
+	}
+	&__back{
+		display: none;
+		@media (max-width:$tablet){
+			display:inline-flex;
+			align-items: center;
+			@include adaptiveValue("font-size",30 ,18,992,320,1 );
+			&:not(:last-child) {margin-bottom: em(65,30);}
+			&::before{
+			}
+		}
+		img{
+			margin-right: em(13,30);
+			object-fit: cover;
+			width: rem(20);
+			height: rem(20);
+		}
 	}
 }
-<<<<<<< Updated upstream
-//==============================================================================================================
 
-
-//==============================================================================================================
-=======
-//===================================================================================================================================================================================================
-//5:00
->>>>>>> Stashed changes
