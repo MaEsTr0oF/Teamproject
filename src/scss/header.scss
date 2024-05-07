@@ -535,6 +535,7 @@ background-color:$mainBgColor;
 		
 		@media (max-width:$tablet){
 			@include adaptiveValue("font-size",30 ,18,992,320,1 );
+			
 		}
 	}
 	&__back{
@@ -579,6 +580,7 @@ background-color:$mainBgColor;
 }
 //===================================================================================================================================================================================================
 .sub-menu-catalog {
+	height: 100%;
 	@media (max-width:$tablet){
 		position: fixed;
 		top: 0;
@@ -611,7 +613,10 @@ background-color:$mainBgColor;
 		&._sub-menu-open{
 			display:grid;
 			@media (max-width:$tablet){
-				display: block;
+				display: inline-flex;
+				flex-direction: column;
+				gap:rem(10);
+				
 			}
 			
 		}
@@ -624,12 +629,22 @@ background-color:$mainBgColor;
 		
 		font-size :rem(18);
 		line-height :math.div(20,16);
-		font-weight: 700;
-		padding: rem(25) 0;
+		
+		
 		border-bottom: 1px solid rgba(255,255,255,0.3);
 		@media (any-hover:hover){
 			&hover{
 				text-decoration: underline;
+			}
+		}
+		@media (max-width:$tablet){
+			font-weight: 700;
+			padding: rem(25) 0;
+			@include adaptiveValue("font-size",25 ,15,992,320,1);
+		}
+		@media (max-width:$tablet){
+			&:not(:last-child) {
+				margin-bottom: em(25,16);
 			}
 		}
 	}
@@ -641,6 +656,9 @@ background-color:$mainBgColor;
 		padding-bottom: rem(30);
 		padding-right:rem(10);
 		border-bottom: 1px solid rgba(255,255,255,0.3);
+		@media (max-width:$tablet){
+			display: none;
+		}
 	}
 	&__link {
 		font-size: rem(16);
@@ -652,7 +670,7 @@ background-color:$mainBgColor;
 		}
 	}
 	&__item{
-
+		
 	}
 	&__all {
 		font-size: rem(16);
@@ -662,6 +680,9 @@ background-color:$mainBgColor;
 			&hover{
 				text-decoration: underline;
 			}
+		}
+		@media (max-width:$tablet){
+			display:none;
 		}
 	}
 	&__back{
