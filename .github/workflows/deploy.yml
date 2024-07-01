@@ -22,7 +22,7 @@ jobs:
         run: npm install # Используйте команду, соответствующую вашему проекту
 
       - name: Build the project
-        run: npm run dev # Используйте команду, соответствующую вашему проекту
+        run: npm run build # Используйте команду, соответствующую вашему проекту
 
       - name: Deploy 1.0
         uses: peaceiris/actions-gh-pages@v3
