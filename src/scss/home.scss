@@ -1,3 +1,120 @@
 //====================================================================================================
 
 //====================================================================================================
+.wrapper {
+}
+
+.main-block {
+      background: url("@/img/decor/bg.svg") center / cover no-repeat;
+		// .main-block__container
+		&__container {
+		}
+
+		// .main-block__body
+
+		&__body {
+		}
+
+		// .main-block__slider
+
+		&__slider {
+		}
+
+		// .main-block__wrapper
+
+		&__wrapper {
+		}
+
+		// .main-block__slide
+
+		&__slide {
+		}
+
+		// .main-block__media
+
+		&__media {
+		}
+
+		// .main-block__advantages
+
+		&__advantages {
+		}
+}
+.swiper {
+}
+.slide-main-block {
+
+		// .slide-main-block__content
+
+		&__content {
+		}
+
+		// .slide-main-block__title
+
+		&__title {
+		}
+
+		// .slide-main-block__sub-title
+
+		&__sub-title {
+		}
+
+		// .slide-main-block__text
+
+		&__text {
+		}
+
+		// .slide-main-block__button
+
+		&__button {
+		}
+}
+.media-main-block {
+
+		// .media-main-block__image
+
+		&__image {
+		}
+
+		// .media-main-block__tips
+
+		&__tips {
+		}
+
+		// .media-main-block__tip
+
+		&__tip {
+
+			// .media-main-block__tip_1
+
+			&_1 {
+			}
+
+			// .media-main-block__tip_2
+
+			&_2 {
+			}
+
+			// .media-main-block__tip_3
+
+			&_3 {
+			}
+		}
+}
+.advantages-main {
+
+		// .advantages-main__item
+
+		&__item {
+		}
+
+		// .advantages-main__icon
+
+		&__icon {
+		}
+
+		// .advantages-main__text
+
+		&__text {
+		}
+}
