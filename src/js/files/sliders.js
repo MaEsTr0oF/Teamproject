@@ -7,7 +7,7 @@
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
 // Пример: { Navigation, Autoplay }
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination,Parallax,Autoplay} from 'swiper/modules';
 // Direct React component imports
 import { Swiper } from 'swiper';
 /*
@@ -46,11 +46,12 @@ function initSliders() {
 		new Swiper('.main-block__slider', { // Указываем скласс нужного слайдера
 			// Подключаем модули слайдера
 			// для конкретного случая
-			modules: [Navigation, Pagination],
+			modules: [Navigation, Pagination,Parallax,Autoplay],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
+			parallax: true,
 			//autoHeight: true,
 			speed: 800,
 
@@ -60,14 +61,14 @@ function initSliders() {
 			//preloadImages: false,
 			//lazy: true,
 
-			/*
+			
 			// Эффекты
-			effect: 'fade',
+			//effect: 'fade',
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-			*/
+			
 
 			// Пагинация
 
