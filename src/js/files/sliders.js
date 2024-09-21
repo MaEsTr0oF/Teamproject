@@ -115,7 +115,16 @@ function initSliders() {
 			*/
 			// События
 			on: {
+				init: function (swiper) { 
+					const allSlides = document.querySelectorAll('.fraction-controll__all');
+					allSlides.innerHTML=swiper.slides.length  <10 ?`0${swiper.slides.length}` : swiper.slides.lenght;
+				 },
+				 slideChange: function(swiper){
+					let currentSlides = document.querySelector('.fraction-controll__current');
+					currentSlides.innerHTML =swiper.realIndex	+ 1 < 10 ?`0${swiper.realIndex+1}` : swiper.realIndex+1;
 
+
+				 }
 			}
 		});
 	}

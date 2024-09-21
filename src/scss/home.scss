@@ -17,7 +17,14 @@
 		&__body {
 			align-items: start;
 			display: grid;
-			grid-template-columns: 1fr percent(635,1600);
+			row-gap: rem(40);
+			&:not(:last-child) {
+				@include adaptiveValue("margin-bottom",43 ,30 );
+			}
+			@media (min-width:$tablet){
+				grid-template-columns: 1fr percent(635,1600);
+
+			}
 		}
 
 		// .main-block__slider
@@ -64,8 +71,9 @@
 	gap: rem(20);
 	&__dotts {
 		display: inline-grid;
-	grid-auto-flow: column;
+		grid-auto-flow: column;
 		gap: rem(15);
+		transform: translate(0px,10%);
 		.swiper-pagination-bullet{
 			cursor:pointer;
 			height: 40px;
@@ -107,7 +115,8 @@
 		}
 	}
 	&__fraction {
-		
+		display: flex;
+		color: #fff;
 	}
 }
 .fraction-controll {
@@ -119,9 +128,11 @@
 	&__current {
 		color:orange;
 		font-style: rem(24);
+		
 	}
 	&__all {
 		font-style: rem(18);
+		
 	}
 }
 
@@ -131,8 +142,11 @@
 
 		&__content {
 			color:white;
-			padding-right: rem(40);
 			padding-top: rem(40);
+			@media (max-width:$tablet){
+				padding-right: rem(40);
+
+			}
 			&:not(:last-child) {
 				@include adaptiveValue("margin-botom",60 ,30 );
 			}
@@ -142,7 +156,7 @@
 
 		&__title {
 			font-weight: 700;
-			font-style: rem(36);
+			@include adaptiveValue("font-size",36 ,22,992,320,1 );
 			line-height: math.div(46 ,36 );
 			letter-spacing: 0.03em;
 			&:not(:last-child) {
@@ -153,7 +167,7 @@
 		// .slide-main-block__sub-title
 
 		&__sub-title {
-			font-style: rem(36);
+			@include adaptiveValue("font-size",36 ,22,992,320,1 );
 			line-height: math.div(46 ,36 );
 			&:not(:last-child) {
 				margin-bottom: em(30,36);
@@ -163,6 +177,7 @@
 		// .slide-main-block__text
 
 		&__text {
+			@include adaptiveValue("font-size",20 ,16,992,320,1 );
 			color:rgba(255,255,255, $alpha: 0.7);
 			font-style: rem(20);
 			line-height: math.div(30 ,20 );
@@ -172,6 +187,10 @@
 
 		&__button {
 			margin-top: rem(50);
+			@media (max-width:$mobileSmall){
+				  width: 100%;
+					text-align: center;
+			}
 		}
 }
 .media-main-block {
@@ -182,6 +201,7 @@
 		// .media-main-block__image
 
 		&__image img{
+			max-width: 100%;
 			margin-top: rem(-60);
 			object-fit: cover;
 			width: 550px;
@@ -214,10 +234,21 @@
 		}
 }
 .advantages-main {
-
+	display: grid;
+	grid-template-columns: repeat(4,auto);
+	gap: rem(10);
+	justify-content:space-between;
 		// .advantages-main__item
-
+	@media (max-width:$tablet){
+		  grid-template-columns: repeat(2,1fr);
+			justify-item:center;
+	}
 		&__item {
+			display: inline-grid;
+			gap:17px;
+			text-align: center;
+			max-width: 290px;
+			grid-template-rows: 77px auto;
 		}
 
 		// .advantages-main__icon
@@ -228,6 +259,109 @@
 		// .advantages-main__text
 
 		&__text {
+			color: #ffff;
+			font-weight: 600;
+			font-size: 18px;
+			line-height: math.div(32 ,20 );
 		}
 }
-//1:28
+//========================================================================================================================================================
+
+.catalog-cards {
+	@include adaptiveValue("padding-top",100,30 );
+	@include adaptiveValue("padding-bottom",70 ,30 );
+	&__container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+	}
+
+	&__item {
+		
+	}
+}
+.item-catalog-cards {
+	box-shadow: 0px 4px 20px rgba($color: #000000, $alpha: 0.15);
+	position:relative;
+	padding: 30px;
+	min-height: 290px;
+	&__body {
+		position: relative;
+		z-index: 2;
+	}
+
+	&__title {
+		&:not(:last-child) {
+			margin-bottom: rem(15);
+		}
+	}
+
+	&__link-title {
+		display: inline-block;
+		font-weight: 600;
+		font-size: 24px;
+		line-height: math.div(34,24);
+		&::after{
+			content:'';
+			width: 70px;
+			background-color: yellow;
+			height: 2px;
+			display: block;
+			margin-top: rem(8);
+			transition: all 0.8s ease 0s;
+		}
+		@media (any-hover: hover){
+			&:hover{
+				&::after{
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	&__list {
+	}
+
+	&__item {
+		position: relative;
+		padding: 0 0 0 15px;
+		&::before{
+			content:'';
+			width: 6px;
+			height: 6px;
+			background-color: yellow;
+			border-radius: 50%;
+			position:absolute;
+			left: 0;
+			top: em(8,18);
+		}
+		&:not(:last-child) {margin-bottom: 10px;}
+	}
+
+	&__link {
+		font-size: 18px;
+		line-height: math.div( 24,18 );
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__image {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		right: 0;
+		text-align: right;
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+	}
+	&__image img{
+		object-fit: cover;
+		width: 250px;
+		height: 250px;
+	}
+}
+//2:21
