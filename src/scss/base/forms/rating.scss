@@ -3,8 +3,9 @@
 .rating {
 	display: flex;
 	align-items: flex-end;
-	font-size: 40px;
+	font-size: 30px;
 	line-height: 0.75;
+	
 	transition: opacity 0.3s ease 0s;
 }
 .rating.rating_sending {
@@ -16,6 +17,7 @@
 }
 
 .rating__body {
+	letter-spacing: em(10,30);
 	position: relative;
 }
 .rating__body::before {
@@ -54,7 +56,13 @@
 	opacity: 0;
 }
 .rating__value {
+	display: none;
 	font-size: 50%;
 	line-height: 1;
 	padding: 0px 0px 0px 10px;
+}
+.rating__info{
+	color:grey;
+	font-size: 16px;
+
 }

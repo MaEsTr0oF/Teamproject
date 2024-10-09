@@ -7,7 +7,7 @@
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
 // Пример: { Navigation, Autoplay }
-import { Navigation, Pagination,Parallax,Autoplay} from 'swiper/modules';
+import { Navigation, Pagination, Parallax, Autoplay } from 'swiper/modules';
 // Direct React component imports
 import { Swiper } from 'swiper';
 /*
@@ -39,41 +39,63 @@ function bildSliders() {
 // Инициализация слайдеров
 function initSliders() {
 	bildSliders();
-	// Перечень слайдеров
-	// Проверяем, есть ли слайдер на стронице
-	if (document.querySelector('.main-block__slider')) { // Указываем скласс нужного слайдера
-		// Создаем слайдер
-		new Swiper('.main-block__slider', { // Указываем скласс нужного слайдера
-			// Подключаем модули слайдера
-			// для конкретного случая
-			modules: [Navigation, Pagination,Parallax,Autoplay],
+	if (document.querySelector('.main-block__slider')) {
+		new Swiper('.main-block__slider', {
+			modules: [Navigation, Pagination, Parallax, Autoplay],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
 			parallax: true,
+			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.controll-main-block__dotts',
+				clickable: true,
+			},
+			on: {
+				init: function (swiper) {
+					const allSlides = document.querySelectorAll('.fraction-controll__all');
+					allSlides.innerHTML = swiper.slides.length < 10 ? `0${swiper.slides.length}` : swiper.slides.lenght;
+				},
+				slideChange: function (swiper) {
+					let currentSlides = document.querySelector('.fraction-controll__current');
+					currentSlides.innerHTML = swiper.realIndex + 1 < 10 ? `0${swiper.realIndex + 1}` : swiper.realIndex + 1;
+				}
+			}
+		});
+	}
+	if (document.querySelector('.product-slider')) {
+		// Создаем слайдер
+		new Swiper('.product-slider__slider', {
+			modules: [Navigation, Pagination, Autoplay],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 30,
+			parallax: true,
 			//autoHeight: true,
 			speed: 800,
-
-			//touchRatio: 0,
-			//simulateTouch: false,
+			watchOverflow: true,
+			touchRatio: 1,
+			simulateTouch: true,
 			//loop: true,
 			//preloadImages: false,
 			//lazy: true,
 
-			
+
 			// Эффекты
 			//effect: 'fade',
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-			
-
-			// Пагинация
 
 			pagination: {
-				el: '.controll-main-block__dotts',
+				el: '.products-slider__dotts',
 				clickable: true,
 			},
 
@@ -115,20 +137,12 @@ function initSliders() {
 			*/
 			// События
 			on: {
-				init: function (swiper) { 
-					const allSlides = document.querySelectorAll('.fraction-controll__all');
-					allSlides.innerHTML=swiper.slides.length  <10 ?`0${swiper.slides.length}` : swiper.slides.lenght;
-				 },
-				 slideChange: function(swiper){
-					let currentSlides = document.querySelector('.fraction-controll__current');
-					currentSlides.innerHTML =swiper.realIndex	+ 1 < 10 ?`0${swiper.realIndex+1}` : swiper.realIndex+1;
 
-
-				 }
 			}
 		});
 	}
 }
+
 // Скролл на базе слайдера (по классу swiper_scroll для оболочки слайдера)
 function initSlidersScroll() {
 	let sliderScrollItems = document.querySelectorAll('.swiper_scroll');
