@@ -1,0 +1,5 @@
+CREATE TABLE users IF NOT EXISTS (
+    id BIGINT PRIMARY KEY,
+    login TEXT NOT NULL,
+    hashPass TEXT
+)
